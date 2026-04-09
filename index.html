@@ -1,206 +1,59 @@
-```html
-<!DOCTYPE html>
-<html lang="bn">
+<!DOCTYPE html><html lang="bn">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>পুষ্পাঞ্জলি নার্সারি - আপনার স্বপ্নের বাগান</title>
-    <!-- Tailwind CSS link for design -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts for better Bengali typography -->
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Hind Siliguri', sans-serif;
-            scroll-behavior: smooth;
-        }
-        .plant-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1);
-        }
-        /* Hero section background image */
-        .hero-section {
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?auto=format&fit=crop&w=1600&q=80');
-            background-size: cover;
-            background-position: center;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Green Canvas Online</title>
+<script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-slate-50 text-gray-900">
+<body class="bg-gray-100"><!-- Header --><div class="bg-green-700 text-white p-4 text-center text-2xl font-bold">
+🌿 Green Canvas Online
+</div><!-- User Form --><div class="max-w-xl mx-auto bg-white p-6 mt-6 rounded-xl shadow">
+<h2 class="text-xl font-bold mb-4">আপনার তথ্য দিন</h2>
+<input id="name" placeholder="আপনার নাম" class="w-full border p-2 mb-3 rounded" />
+<input id="phone" placeholder="মোবাইল নাম্বার" class="w-full border p-2 mb-3 rounded" />
+<textarea id="address" placeholder="ঠিকানা" class="w-full border p-2 mb-3 rounded"></textarea>
+</div><!-- Category --><div class="max-w-6xl mx-auto mt-10">
+<h2 class="text-2xl font-bold mb-4">ক্যাটাগরি</h2>
+<div class="flex gap-4">
+<button onclick="filter('flower')" class="bg-green-500 text-white px-4 py-2 rounded">ফুল গাছ</button>
+<button onclick="filter('fruit')" class="bg-green-500 text-white px-4 py-2 rounded">ফল গাছ</button>
+<button onclick="filter('all')" class="bg-gray-500 text-white px-4 py-2 rounded">সব</button>
+</div>
+</div><!-- Products --><div id="products" class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto mt-6"><div class="card flower bg-white p-4 rounded shadow">
+<h3 class="font-bold">🌹 গোলাপ</h3>
+<p>৳ 200</p>
+<button onclick="order('গোলাপ','200')" class="bg-green-600 text-white px-3 py-1 mt-2 rounded">Order Now</button>
+</div><div class="card fruit bg-white p-4 rounded shadow">
+<h3 class="font-bold">🥭 আম গাছ</h3>
+<p>৳ 350</p>
+<button onclick="order('আম গাছ','350')" class="bg-green-600 text-white px-3 py-1 mt-2 rounded">Order Now</button>
+</div></div><script>
+const phone = "919353544837";
 
-    <!-- Header / Navigation -->
-    <nav class="bg-white/90 backdrop-blur-md shadow-sm sticky top-0 z-50">
-        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <div class="flex items-center gap-2">
-                <span class="text-3xl">🌿</span>
-                <h1 class="text-2xl font-bold text-green-700">পুষ্পাঞ্জলি</h1>
-            </div>
-            <div class="hidden md:flex space-x-6 font-medium text-gray-600">
-                <a href="#" class="hover:text-green-600 transition">হোম</a>
-                <a href="#shop" class="hover:text-green-600 transition">গাছসমূহ</a>
-                <a href="#contact" class="hover:text-green-600 transition">যোগাযোগ</a>
-            </div>
-            <a href="tel:+8801234567890" class="bg-green-600 text-white px-6 py-2 rounded-full font-semibold hover:bg-green-700 transition hidden sm:block">কল করুন</a>
-        </div>
-    </nav>
+function order(product, price){
+let name = document.getElementById('name').value;
+let userPhone = document.getElementById('phone').value;
+let address = document.getElementById('address').value;
 
-    <!-- Hero Banner -->
-    <section class="hero-section h-[550px] flex items-center justify-center text-center text-white">
-        <div class="max-w-3xl px-6">
-            <h2 class="text-4xl md:text-6xl font-extrabold mb-6 leading-tight">প্রকৃতির সতেজতা আসুক আপনার বারান্দায়</h2>
-            <p class="text-lg md:text-xl mb-10 text-gray-200">সরাসরি নার্সারি থেকে সংগ্রহ করা সুস্থ ও সতেজ সব রকমের ফুল ও ফলের চারার বিশাল সংগ্রহ।</p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="#shop" class="bg-green-500 hover:bg-green-600 px-10 py-4 rounded-xl font-bold text-lg transition">এখনই গাছ কিনুন</a>
-                <a href="https://wa.me/8801234567890" target="_blank" class="bg-white text-green-700 hover:bg-gray-100 px-10 py-4 rounded-xl font-bold text-lg transition">হোয়াটসঅ্যাপ মেসেজ</a>
-            </div>
-        </div>
-    </section>
+if(!name || !userPhone || !address){
+alert("সব তথ্য দিন");
+return;
+}
 
-    <!-- Features -->
-    <section class="py-16 bg-white">
-        <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-10">
-            <div class="text-center p-8 bg-green-50 rounded-3xl">
-                <div class="text-5xl mb-4">🌸</div>
-                <h3 class="text-xl font-bold mb-2">সতেজ গাছ</h3>
-                <p class="text-gray-600">আমাদের প্রতিটি চারা বিশেষভাবে যত্ন নিয়ে বড় করা হয়।</p>
-            </div>
-            <div class="text-center p-8 bg-green-50 rounded-3xl">
-                <div class="text-5xl mb-4">🏠</div>
-                <h3 class="text-xl font-bold mb-2">হোম ডেলিভারি</h3>
-                <p class="text-gray-600">খুব যত্ন সহকারে আপনার ঠিকানায় গাছ পৌঁছে দেওয়া হয়।</p>
-            </div>
-            <div class="text-center p-8 bg-green-50 rounded-3xl">
-                <div class="text-5xl mb-4">💳</div>
-                <h3 class="text-xl font-bold mb-2">সহজ পেমেন্ট</h3>
-                <p class="text-gray-600">বিকাশ, নগদ বা ক্যাশ অন ডেলিভারি সুবিধা রয়েছে।</p>
-            </div>
-        </div>
-    </section>
+let msg = `নতুন অর্ডার:\n\nনাম: ${name}\nমোবাইল: ${userPhone}\nঠিকানা: ${address}\n\nপ্রোডাক্ট: ${product}\nদাম: ৳${price}`;
 
-    <!-- Shop Section -->
-    <section id="shop" class="py-20 container mx-auto px-4">
-        <div class="flex flex-col md:flex-row justify-between items-end mb-12">
-            <div>
-                <span class="text-green-600 font-bold uppercase tracking-wider">আমাদের বাগান</span>
-                <h2 class="text-4xl font-bold text-gray-900 mt-2">সেরা বিক্রিত গাছসমূহ</h2>
-            </div>
-            <p class="text-gray-500 max-w-md mt-4 md:mt-0">আপনার পছন্দের গাছটি বেছে নিন এবং সরাসরি হোয়াটসঅ্যাপের মাধ্যমে অর্ডার করুন।</p>
-        </div>
+window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`,'_blank');
+}
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-            <!-- Plant Item 1 -->
-            <div class="bg-white rounded-[2.5rem] p-4 plant-card transition-all duration-300 border border-gray-100">
-                <img src="https://images.unsplash.com/photo-1544833058-e70f9ca2bdc5?auto=format&fit=crop&w=500&q=80" alt="গোলাপ" class="w-full h-64 object-cover rounded-[2rem] mb-6">
-                <div class="px-2">
-                    <h3 class="text-xl font-bold mb-1">সাদা বিদেশি গোলাপ</h3>
-                    <p class="text-gray-500 text-sm mb-4">খুব সুগন্ধি এবং সারা বছর ফুল দেয়।</p>
-                    <div class="flex items-center justify-between">
-                        <span class="text-2xl font-bold text-green-700">৳ ২২০</span>
-                        <button onclick="orderViaWhatsApp('সাদা বিদেশি গোলাপ', '৳ ২২০')" class="bg-green-600 hover:bg-green-700 text-white px-5 py-2.5 rounded-2xl font-medium transition">কিনুন</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Plant Item 2 -->
-            <div class="bg-white rounded-[2.5rem] p-4 plant-card transition-all duration-300 border border-gray-100">
-                <img src="https://images.unsplash.com/photo-1599394142171-8975949d0685?auto=format&fit=crop&w=500&q=80" alt="অর্কিড" class="w-full h-64 object-cover rounded-[2rem] mb-6">
-                <div class="px-2">
-                    <h3 class="text-xl font-bold mb-1">পার্পল অর্কিড</h3>
-                    <p class="text-gray-500 text-sm mb-4">ঘরের ভেতরে রাখার জন্য সেরা প্রিমিয়াম গাছ।</p>
-                    <div class="flex items-center justify-between">
-                        <span class="text-2xl font-bold text-green-700">৳ ৪৫০</span>
-                        <button onclick="orderViaWhatsApp('পার্পল অর্কিড', '৳ ৪৫০')" class="bg-green-600 hover:bg-green-700 text-white px-5 py-2.5 rounded-2xl font-medium transition">কিনুন</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Plant Item 3 -->
-            <div class="bg-white rounded-[2.5rem] p-4 plant-card transition-all duration-300 border border-gray-100">
-                <img src="https://images.unsplash.com/photo-1622839446300-47b742a78137?auto=format&fit=crop&w=500&q=80" alt="এডেনিয়াম" class="w-full h-64 object-cover rounded-[2rem] mb-6">
-                <div class="px-2">
-                    <h3 class="text-xl font-bold mb-1">অ্যাডেনিয়াম (বনসাই)</h3>
-                    <p class="text-gray-500 text-sm mb-4">মরু গোলাপ যা অল্প পানিতে চমৎকার ফুল দেয়।</p>
-                    <div class="flex items-center justify-between">
-                        <span class="text-2xl font-bold text-green-700">৳ ৩৮০</span>
-                        <button onclick="orderViaWhatsApp('অ্যাডেনিয়াম (বনসাই)', '৳ ৩৮০')" class="bg-green-600 hover:bg-green-700 text-white px-5 py-2.5 rounded-2xl font-medium transition">কিনুন</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Plant Item 4 -->
-            <div class="bg-white rounded-[2.5rem] p-4 plant-card transition-all duration-300 border border-gray-100">
-                <img src="https://images.unsplash.com/photo-1592150621344-82841b6f9302?auto=format&fit=crop&w=500&q=80" alt="বেলি" class="w-full h-64 object-cover rounded-[2rem] mb-6">
-                <div class="px-2">
-                    <h3 class="text-xl font-bold mb-1">সুগন্ধি বেলি চারা</h3>
-                    <p class="text-gray-500 text-sm mb-4">দেশি জাতের সতেজ বেলি ফুলের কলমের চারা।</p>
-                    <div class="flex items-center justify-between">
-                        <span class="text-2xl font-bold text-green-700">৳ ১২০</span>
-                        <button onclick="orderViaWhatsApp('সুগন্ধি বেলি চারা', '৳ ১২০')" class="bg-green-600 hover:bg-green-700 text-white px-5 py-2.5 rounded-2xl font-medium transition">কিনুন</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer id="contact" class="bg-slate-900 text-gray-400 py-20 px-4">
-        <div class="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-16">
-            <div>
-                <h3 class="text-white text-2xl font-bold mb-6 italic">🌿 পুষ্পাঞ্জলি নার্সারি</h3>
-                <p class="leading-relaxed mb-6">আমরা গত ১০ বছর ধরে বিশ্বস্ততার সাথে সারা বাংলাদেশে সুস্থ সবল গাছের চারা সরবরাহ করে আসছি। আপনার বাগান সাজাতে আমরা সদা প্রস্তুত।</p>
-                <div class="flex space-x-4">
-                    <a href="#" class="w-10 h-10 rounded-full border border-gray-700 flex items-center justify-center hover:bg-green-600 hover:text-white transition">F</a>
-                    <a href="#" class="w-10 h-10 rounded-full border border-gray-700 flex items-center justify-center hover:bg-green-600 hover:text-white transition">I</a>
-                    <a href="#" class="w-10 h-10 rounded-full border border-gray-700 flex items-center justify-center hover:bg-green-600 hover:text-white transition">Y</a>
-                </div>
-            </div>
-            <div>
-                <h4 class="text-white font-bold mb-6 uppercase">যোগাযোগের তথ্য</h4>
-                <ul class="space-y-4">
-                    <li class="flex items-start gap-3">
-                        <span>📍</span>
-                        <span>ঢাকা রোড, সাভার, ঢাকা ১২৪০</span>
-                    </li>
-                    <li class="flex items-start gap-3">
-                        <span>📞</span>
-                        <span>+৮৮০ ১২৩৪ ৫৬৭ ৮৯০</span>
-                    </li>
-                    <li class="flex items-start gap-3">
-                        <span>✉️</span>
-                        <span>contact@pushpanjali.com</span>
-                    </li>
-                </ul>
-            </div>
-            <div>
-                <h4 class="text-white font-bold mb-6 uppercase">অর্ডার পদ্ধতি</h4>
-                <p class="text-sm mb-4">আমাদের ওয়েবসাইটে আপনার পছন্দের গাছটি বেছে নিয়ে 'কিনুন' বাটনে ক্লিক করুন। এটি সরাসরি আপনাকে আমাদের হোয়াটসঅ্যাপে নিয়ে যাবে যেখানে আপনি ঠিকানা দিয়ে অর্ডার কনফার্ম করতে পারবেন।</p>
-                <div class="p-4 bg-gray-800 rounded-2xl border border-gray-700">
-                    <p class="text-white font-bold">ডেলিভারি চার্জ:</p>
-                    <p>ঢাকার ভিতরে: ৳ ৮০ | ঢাকার বাইরে: ৳ ১৫০</p>
-                </div>
-            </div>
-        </div>
-        <div class="text-center mt-20 pt-8 border-t border-gray-800 text-sm">
-            &copy; ২০২৪ পুষ্পাঞ্জলি নার্সারি | সর্বস্বত্ব সংরক্ষিত
-        </div>
-    </footer>
-
-    <!-- JavaScript logic -->
-    <script>
-        // আপনার হোয়াটসঅ্যাপ নম্বর (বিনা স্পেসে)
-        const myPhoneNumber = "8801234567890"; 
-
-        function orderViaWhatsApp(name, price) {
-            const message = `হ্যালো পুষ্পাঞ্জলি নার্সারি!\n\nআমি এই গাছটি অর্ডার করতে চাই:\n\n🌿 নাম: ${name}\n💰 দাম: ${price}\n\nদয়া করে অর্ডারটি কনফার্ম করার জন্য প্রয়োজনীয় তথ্য দিন।`;
-            const encodedMessage = encodeURIComponent(message);
-            const whatsappLink = `https://wa.me/${myPhoneNumber}?text=${encodedMessage}`;
-            
-            // নতুন উইন্ডোতে হোয়াটসঅ্যাপ খুলবে
-            window.open(whatsappLink, '_blank');
-        }
-    </script>
-</body>
+function filter(type){
+let cards = document.querySelectorAll('.card');
+cards.forEach(c=>{
+if(type==='all' || c.classList.contains(type)){
+c.style.display='block';
+}else{
+c.style.display='none';
+}
+});
+}
+</script></body>
 </html>
-
-```
-

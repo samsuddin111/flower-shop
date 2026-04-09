@@ -4,55 +4,115 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Green Canvas Online</title>
 <script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+body{font-family:'Hind Siliguri',sans-serif}
+.card:hover{transform:scale(1.03);transition:.3s}
+</style>
 </head>
-<body class="bg-gray-100"><!-- Header --><div class="bg-green-700 text-white p-4 text-center text-2xl font-bold">
-🌿 Green Canvas Online
-</div><!-- User Form --><div class="max-w-xl mx-auto bg-white p-6 mt-6 rounded-xl shadow">
-<h2 class="text-xl font-bold mb-4">আপনার তথ্য দিন</h2>
+<body class="bg-gray-100"><!-- Header --><div class="bg-green-700 text-white p-4 text-center text-2xl font-bold">🌿 Green Canvas Online</div><!-- User Info (Auto Save) --><div class="max-w-xl mx-auto bg-white p-6 mt-6 rounded-xl shadow">
+<h2 class="text-xl font-bold mb-4">আপনার তথ্য</h2>
 <input id="name" placeholder="আপনার নাম" class="w-full border p-2 mb-3 rounded" />
 <input id="phone" placeholder="মোবাইল নাম্বার" class="w-full border p-2 mb-3 rounded" />
 <textarea id="address" placeholder="ঠিকানা" class="w-full border p-2 mb-3 rounded"></textarea>
-</div><!-- Category --><div class="max-w-6xl mx-auto mt-10">
+<button onclick="saveUser()" class="bg-green-600 text-white px-4 py-2 rounded">Save Info</button>
+</div><!-- Category --><div class="max-w-6xl mx-auto mt-10 px-4">
 <h2 class="text-2xl font-bold mb-4">ক্যাটাগরি</h2>
-<div class="flex gap-4">
-<button onclick="filter('flower')" class="bg-green-500 text-white px-4 py-2 rounded">ফুল গাছ</button>
-<button onclick="filter('fruit')" class="bg-green-500 text-white px-4 py-2 rounded">ফল গাছ</button>
-<button onclick="filter('all')" class="bg-gray-500 text-white px-4 py-2 rounded">সব</button>
+<div class="flex gap-3 flex-wrap">
+<button onclick="filter('flower')" class="bg-green-500 text-white px-4 py-2 rounded-full">🌸 ফুল</button>
+<button onclick="filter('fruit')" class="bg-green-500 text-white px-4 py-2 rounded-full">🍎 ফল</button>
+<button onclick="filter('indoor')" class="bg-green-500 text-white px-4 py-2 rounded-full">🏠 ইনডোর</button>
+<button onclick="filter('all')" class="bg-gray-500 text-white px-4 py-2 rounded-full">সব</button>
 </div>
-</div><!-- Products --><div id="products" class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto mt-6"><div class="card flower bg-white p-4 rounded shadow">
-<h3 class="font-bold">🌹 গোলাপ</h3>
-<p>৳ 200</p>
-<button onclick="order('গোলাপ','200')" class="bg-green-600 text-white px-3 py-1 mt-2 rounded">Order Now</button>
-</div><div class="card fruit bg-white p-4 rounded shadow">
-<h3 class="font-bold">🥭 আম গাছ</h3>
-<p>৳ 350</p>
-<button onclick="order('আম গাছ','350')" class="bg-green-600 text-white px-3 py-1 mt-2 rounded">Order Now</button>
+</div><!-- Products --><div id="products" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-6xl mx-auto mt-6 px-4"><!-- Product Card --><div class="card flower bg-white rounded-2xl shadow overflow-hidden">
+<img src="https://images.unsplash.com/photo-1490750967868-88aa4486c946" class="w-full h-60 object-cover">
+<div class="p-4">
+<h3 class="font-bold text-lg">গোলাপ</h3>
+<p class="text-yellow-500">⭐⭐⭐⭐☆</p>
+<p class="text-green-700 font-bold">৳200</p>
+<div class="flex items-center gap-2 mt-2">
+<button onclick="changeQty(this,-1)" class="bg-gray-200 px-2">-</button>
+<span class="qty">1</span>
+<button onclick="changeQty(this,1)" class="bg-gray-200 px-2">+</button>
+</div>
+<button onclick="order(this,'গোলাপ','200')" class="bg-green-600 text-white w-full mt-3 py-2 rounded">Order Now</button>
+</div>
+</div><div class="card fruit bg-white rounded-2xl shadow overflow-hidden">
+<img src="https://images.unsplash.com/photo-1567306226416-28f0efdc88ce" class="w-full h-60 object-cover">
+<div class="p-4">
+<h3 class="font-bold text-lg">আপেল গাছ</h3>
+<p class="text-yellow-500">⭐⭐⭐⭐⭐</p>
+<p class="text-green-700 font-bold">৳400</p>
+<div class="flex items-center gap-2 mt-2">
+<button onclick="changeQty(this,-1)" class="bg-gray-200 px-2">-</button>
+<span class="qty">1</span>
+<button onclick="changeQty(this,1)" class="bg-gray-200 px-2">+</button>
+</div>
+<button onclick="order(this,'আপেল গাছ','400')" class="bg-green-600 text-white w-full mt-3 py-2 rounded">Order Now</button>
+</div>
+</div><div class="card indoor bg-white rounded-2xl shadow overflow-hidden">
+<img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6" class="w-full h-60 object-cover">
+<div class="p-4">
+<h3 class="font-bold text-lg">মানি প্ল্যান্ট</h3>
+<p class="text-yellow-500">⭐⭐⭐⭐☆</p>
+<p class="text-green-700 font-bold">৳150</p>
+<div class="flex items-center gap-2 mt-2">
+<button onclick="changeQty(this,-1)" class="bg-gray-200 px-2">-</button>
+<span class="qty">1</span>
+<button onclick="changeQty(this,1)" class="bg-gray-200 px-2">+</button>
+</div>
+<button onclick="order(this,'মানি প্ল্যান্ট','150')" class="bg-green-600 text-white w-full mt-3 py-2 rounded">Order Now</button>
+</div>
 </div></div><script>
-const phone = "919353544837";
+const shopPhone = "919353544837";
 
-function order(product, price){
-let name = document.getElementById('name').value;
-let userPhone = document.getElementById('phone').value;
-let address = document.getElementById('address').value;
+// Save user info local
+function saveUser(){
+localStorage.setItem('name',document.getElementById('name').value);
+localStorage.setItem('phone',document.getElementById('phone').value);
+localStorage.setItem('address',document.getElementById('address').value);
+alert('Saved!');
+}
 
-if(!name || !userPhone || !address){
-alert("সব তথ্য দিন");
+// Load saved
+window.onload = function(){
+document.getElementById('name').value = localStorage.getItem('name')||'';
+document.getElementById('phone').value = localStorage.getItem('phone')||'';
+document.getElementById('address').value = localStorage.getItem('address')||'';
+}
+
+// Quantity
+function changeQty(btn, val){
+let qtyEl = btn.parentElement.querySelector('.qty');
+let qty = parseInt(qtyEl.innerText);
+qty += val;
+if(qty<1) qty=1;
+qtyEl.innerText = qty;
+}
+
+// Order
+function order(btn,name,price){
+let user = localStorage.getItem('name');
+let phone = localStorage.getItem('phone');
+let address = localStorage.getItem('address');
+
+if(!user||!phone||!address){
+alert('আগে তথ্য Save করুন');
 return;
 }
 
-let msg = `নতুন অর্ডার:\n\nনাম: ${name}\nমোবাইল: ${userPhone}\nঠিকানা: ${address}\n\nপ্রোডাক্ট: ${product}\nদাম: ৳${price}`;
+let qty = btn.parentElement.querySelector('.qty').innerText;
 
-window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`,'_blank');
+let msg = `নতুন অর্ডার:\n\nনাম: ${user}\nমোবাইল: ${phone}\nঠিকানা: ${address}\n\nপ্রোডাক্ট: ${name}\nপরিমাণ: ${qty}\nদাম: ৳${price}`;
+
+window.open(`https://wa.me/${shopPhone}?text=${encodeURIComponent(msg)}`,'_blank');
 }
 
+// Filter
 function filter(type){
-let cards = document.querySelectorAll('.card');
-cards.forEach(c=>{
-if(type==='all' || c.classList.contains(type)){
-c.style.display='block';
-}else{
-c.style.display='none';
-}
+document.querySelectorAll('.card').forEach(c=>{
+if(type==='all'||c.classList.contains(type)) c.style.display='block';
+else c.style.display='none';
 });
 }
 </script></body>

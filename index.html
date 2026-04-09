@@ -302,4 +302,75 @@
     </script>
 </body>
 </html>
+<!DOCTYPE html><html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GCO Live Firebase Store</title>
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100"><div class="max-w-4xl mx-auto bg-white p-6 mt-6 rounded-xl shadow">
+<h2 class="text-2xl font-bold mb-4">🔐 Firebase Admin Panel</h2>
+<input id="pName" placeholder="Product Name" class="w-full border p-2 mb-2 rounded">
+<input id="pPrice" placeholder="Price" class="w-full border p-2 mb-2 rounded">
+<input id="pImg" placeholder="Image URL" class="w-full border p-2 mb-2 rounded">
+<select id="pCat" class="w-full border p-2 mb-2 rounded">
+<option value="flower">Flower</option>
+<option value="fruit">Fruit</option>
+<option value="indoor">Indoor</option>
+</select>
+<button onclick="addProduct()" class="bg-green-600 text-white px-4 py-2 rounded">Add Product</button>
+</div><div class="max-w-6xl mx-auto mt-10 grid grid-cols-1 md:grid-cols-3 gap-6" id="productList"></div><script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
+const firebaseConfig = {
+  apiKey: "AIzaSyBWDbhuXgmuxD_sUAIBb3QNeSy0YJBcOfg",
+  authDomain: "green-canvas.firebaseapp.com",
+  projectId: "green-canvas",
+  storageBucket: "green-canvas.firebasestorage.app",
+  messagingSenderId: "1043706925001",
+  appId: "1:1043706925001:web:b14beb42dc7ec894fe6218",
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+async function addProduct(){
+let name = document.getElementById('pName').value;
+let price = document.getElementById('pPrice').value;
+let img = document.getElementById('pImg').value;
+let cat = document.getElementById('pCat').value;
+
+if(!name || !price || !img){alert('Fill all');return;}
+
+await addDoc(collection(db, "products"), {name,price,img,cat});
+loadProducts();
+}
+
+async function loadProducts(){
+const querySnapshot = await getDocs(collection(db, "products"));
+let html='';
+querySnapshot.forEach((docSnap)=>{
+const p = docSnap.data();
+html+=`
+<div class="bg-white p-4 rounded shadow">
+<img src="${p.img}" class="h-40 w-full object-cover mb-2">
+<h3 class="font-bold">${p.name}</h3>
+<p>৳ ${p.price}</p>
+<p class="text-xs">${p.cat}</p>
+<button onclick="deleteProduct('${docSnap.id}')" class="bg-red-500 text-white px-2 py-1 mt-2">Delete</button>
+</div>`;
+});
+document.getElementById('productList').innerHTML = html;
+}
+
+window.deleteProduct = async function(id){
+await deleteDoc(doc(db, "products", id));
+loadProducts();
+}
+
+window.addProduct = addProduct;
+loadProducts();
+</script></body>
+</html>

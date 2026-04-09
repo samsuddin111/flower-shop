@@ -2,26 +2,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Green Canvas Online Nursery</title>
+<title>GCO Amazon Style</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet"><style>
-body {font-family: 'Hind Siliguri', sans-serif;}
-.plant-card:hover {transform: translateY(-8px);transition: 0.3s;}
-.category-btn.active {background:#16a34a;color:#fff;}
-</style></head><body class="bg-gray-50"><!-- NAVBAR --><nav class="bg-white shadow sticky top-0 z-50">
-<div class="max-w-6xl mx-auto px-4 py-4 flex justify-between">
-<h1 class="text-xl font-bold text-green-700">🌿 GCO</h1>
-<a href="admin.html" class="text-sm bg-black text-white px-3 py-1 rounded">Admin</a>
-</div>
-</nav><!-- USER INFO --><div class="max-w-xl mx-auto bg-white p-6 mt-6 rounded shadow">
-<h2 class="font-bold mb-3">Delivery Info</h2>
-<input id="name" placeholder="Name" class="w-full border p-2 mb-2">
-<input id="phone" placeholder="Phone" class="w-full border p-2 mb-2">
-<textarea id="address" placeholder="Address" class="w-full border p-2 mb-2"></textarea>
-<button onclick="saveUser()" class="bg-green-600 text-white px-4 py-2 w-full">Save</button>
-</div><!-- PRODUCTS --><div id="productList" class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4 mt-10"></div><script type="module">
+</head>
+<body class="bg-gray-100"><!-- NAV --><div class="bg-green-700 text-white p-4 flex justify-between">
+<h1 class="font-bold">🌿 GCO</h1>
+<button onclick="toggleCart()">🛒 Cart (<span id="cartCount">0</span>)</button>
+</div><!-- PRODUCTS --><div id="products" class="grid grid-cols-2 md:grid-cols-4 gap-4 p-4"></div><!-- CART --><div id="cartBox" class="fixed right-0 top-0 w-80 h-full bg-white shadow hidden p-4 overflow-auto">
+<h2 class="font-bold text-lg mb-4">Your Cart</h2>
+<div id="cartItems"></div>
+<h3 class="font-bold mt-4">Total: ₹ <span id="total">0</span></h3>
+<button onclick="checkout()" class="bg-green-600 text-white w-full mt-4 py-2">Order Now</button>
+</div><script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import { getFirestore, collection, getDocs, addDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBWDbhuXgmuxD_sUAIBb3QNeSy0YJBcOfg",
@@ -32,37 +26,50 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
+let cart = [];
+
 async function loadProducts(){
 const snap = await getDocs(collection(db,"products"));
 let html='';
 snap.forEach(doc=>{
 let p = doc.data();
 html+=`
-<div class="bg-white p-3 rounded shadow plant-card">
-<img src="${p.img}" class="h-40 w-full object-cover rounded">
-<h3 class="font-bold mt-2">${p.name}</h3>
-<p class="text-green-700 font-bold">₹ ${p.price}</p>
-<button onclick="order('${p.name}','${p.price}')" class="bg-green-500 text-white px-2 py-1 mt-2 w-full">Order</button>
+<div class="bg-white p-3 rounded shadow">
+<img src="${p.img}" class="h-32 w-full object-cover">
+<h3>${p.name}</h3>
+<p>₹ ${p.price}</p>
+<button onclick="addToCart('${p.name}',${p.price})" class="bg-green-500 text-white w-full mt-2">Add</button>
 </div>`;
 });
-document.getElementById('productList').innerHTML = html;
+document.getElementById('products').innerHTML = html;
 }
 
-window.order = function(name,price){
-let user = JSON.parse(localStorage.getItem('user'));
-if(!user){alert('Fill info first');return;}
-let msg = `Order:%0A${name}%0APrice:${price}%0AName:${user.name}%0APhone:${user.phone}%0AAddress:${user.address}`;
-window.open(`https://wa.me/919353544837?text=${msg}`);
+window.addToCart = function(name,price){
+let item = cart.find(i=>i.name===name);
+if(item){item.qty++;}else{cart.push({name,price,qty:1});}
+updateCart();
 }
 
-window.saveUser = function(){
-let user={
-name:document.getElementById('name').value,
-phone:document.getElementById('phone').value,
-address:document.getElementById('address').value
-};
-localStorage.setItem('user',JSON.stringify(user));
-alert('Saved');
+function updateCart(){
+let html=''; let total=0; let count=0;
+cart.forEach(i=>{
+html+=`<div class='flex justify-between'>${i.name} x${i.qty}</div>`;
+total+=i.price*i.qty; count+=i.qty;
+});
+document.getElementById('cartItems').innerHTML=html;
+document.getElementById('total').innerText=total;
+document.getElementById('cartCount').innerText=count;
+}
+
+window.toggleCart=function(){
+document.getElementById('cartBox').classList.toggle('hidden');
+}
+
+window.checkout = async function(){
+if(cart.length==0){alert('Cart empty');return;}
+await addDoc(collection(db,"orders"),{cart,date:new Date()});
+alert('Order Placed');
+cart=[];updateCart();
 }
 
 loadProducts();

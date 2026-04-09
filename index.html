@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>পুষ্পাঞ্জলি নার্সারি - শামীম আহমেদ</title>
+    <title>গ্রিন ক্যানভাস অনলাইন নার্সারি - শামীম আহমেদ</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -29,7 +29,7 @@
         <div class="container mx-auto px-4 py-4 flex justify-between items-center">
             <div class="flex items-center gap-2">
                 <span class="text-3xl">🌿</span>
-                <h1 class="text-2xl font-bold text-green-700">পুষ্পাঞ্জলি</h1>
+                <h1 class="text-2xl font-bold text-green-700">গ্রিন ক্যানভাস অনলাইন</h1>
             </div>
             <div class="hidden md:flex space-x-6 font-medium text-gray-600">
                 <a href="#" class="hover:text-green-600">হোম</a>
@@ -177,7 +177,7 @@
     <footer id="contact" class="bg-slate-900 text-gray-300 mt-20 pt-16 pb-8">
         <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-12">
             <div>
-                <h3 class="text-white text-2xl font-bold mb-4 italic">🌿 পুষ্পাঞ্জলি নার্সারি</h3>
+                <h3 class="text-white text-2xl font-bold mb-4 italic">🌿 গ্রিন ক্যানভাস অনলাইন নার্সারি</h3>
                 <p class="text-sm mb-6 leading-relaxed">আমরা বিশ্বাস করি প্রতিটি ঘরে একটি করে বাগান থাকা প্রয়োজন। আমরা আপনাকে সেই স্বপ্ন পূরণে সাহায্য করি সতেজ ও সুস্থ চারা সরবরাহের মাধ্যমে।</p>
                 <div class="flex gap-4">
                     <span class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-green-500 transition cursor-pointer">F</span>
@@ -207,12 +207,13 @@
                 <p class="text-sm mb-4 italic text-gray-400">"প্রথমে আপনার তথ্য সেভ করুন, এরপর পছন্দের গাছের নিচের 'এখনই কিনুন' বাটনে ক্লিক করলেই অর্ডার ডিটেইলস হোয়াটসঅ্যাপে চলে যাবে।"</p>
                 <div class="bg-gray-800 p-4 rounded-2xl border border-gray-700 text-xs">
                     <p class="text-white font-bold mb-1">ডেলিভারি এরিয়া:</p>
-                    <p>সারা বাংলাদেশে কুরিয়ারের মাধ্যমে ডেলিভারি করা হয়।</p>
+                    <p>সারা ওয়েস্ট বেঙ্গল এ কুরিয়ারের মাধ্যমে ডেলিভারি করা হয়।</p>
                 </div>
             </div>
         </div>
         <div class="text-center mt-16 pt-8 border-t border-gray-800 text-xs tracking-widest uppercase">
-            &copy; ২০২৪ পুষ্পাঞ্জলি নার্সারি | ডিজাইন বাই শামীম আহমেদ
+            &copy; ২০২৪ Green Canvas Online নার্সারি | ডিজাইন বাই সামসুদ্দিন সেখ। মো: ৯৩৫৩৫৪৪৮৩৭
+            
         </div>
     </footer>
 
@@ -293,7 +294,7 @@
 
             const qty = btn.parentElement.querySelector('.qty').innerText;
 
-            const message = `🌿 নতুন অর্ডার (পুষ্পাঞ্জলি নার্সারি)\n\n👤 কাস্টমার নাম: ${uName}\n📞 মোবাইল: ${uPhone}\n📍 ঠিকানা: ${uAddress}\n\n📦 অর্ডার বিবরণ:\nনাম: ${plantName}\nপরিমাণ: ${qty} টি\nমূল্য: ${price}\n\nঅর্ডারটি কনফার্ম করুন।`;
+            const message = `🌿 নতুন অর্ডার (GCO নার্সারি)\n\n👤 কাস্টমার নাম: ${uName}\n📞 মোবাইল: ${uPhone}\n📍 ঠিকানা: ${uAddress}\n\n📦 অর্ডার বিবরণ:\nনাম: ${plantName}\nপরিমাণ: ${qty} টি\nমূল্য: ${price}\n\nঅর্ডারটি কনফার্ম করুন।`;
             
             const waURL = `https://wa.me/${adminPhone}?text=${encodeURIComponent(message)}`;
             window.open(waURL, '_blank');
@@ -302,22 +303,3 @@
 </body>
 </html>
 
-```
-}
-
-let qty = btn.parentElement.querySelector('.qty').innerText;
-
-let msg = `নতুন অর্ডার:\n\nনাম: ${user}\nমোবাইল: ${phone}\nঠিকানা: ${address}\n\nপ্রোডাক্ট: ${name}\nপরিমাণ: ${qty}\nদাম: ৳${price}`;
-
-window.open(`https://wa.me/${shopPhone}?text=${encodeURIComponent(msg)}`,'_blank');
-}
-
-// Filter
-function filter(type){
-document.querySelectorAll('.card').forEach(c=>{
-if(type==='all'||c.classList.contains(type)) c.style.display='block';
-else c.style.display='none';
-});
-}
-</script></body>
-</html>

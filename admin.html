@@ -1,0 +1,69 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GCO Admin Panel</title>
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100"><!-- ADMIN LOGIN --><div id="loginBox" class="max-w-md mx-auto mt-10 bg-white p-6 rounded shadow">
+<h2 class="text-xl font-bold mb-4">🔐 Admin Login</h2>
+<input id="email" placeholder="Email" class="w-full border p-2 mb-2">
+<input id="pass" type="password" placeholder="Password" class="w-full border p-2 mb-2">
+<button onclick="login()" class="bg-green-600 text-white px-4 py-2 w-full">Login</button>
+</div><!-- ADMIN PANEL --><div id="adminPanel" class="hidden max-w-4xl mx-auto bg-white p-6 mt-6 rounded shadow">
+<h2 class="text-2xl font-bold mb-4">🌿 GCO Admin Panel</h2><input id="pName" placeholder="Product Name" class="w-full border p-2 mb-2 rounded">
+<input id="pPrice" placeholder="Price" class="w-full border p-2 mb-2 rounded">
+<input id="pImg" type="file" class="w-full border p-2 mb-2 rounded"><select id="pCat" class="w-full border p-2 mb-2 rounded">
+<option value="flower">Flower</option>
+<option value="fruit">Fruit</option>
+<option value="indoor">Indoor</option>
+</select><button onclick="addProduct()" class="bg-green-600 text-white px-4 py-2 rounded w-full">➕ Add Product</button>
+
+</div><script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBWDbhuXgmuxD_sUAIBb3QNeSy0YJBcOfg",
+  authDomain: "green-canvas.firebaseapp.com",
+  projectId: "green-canvas",
+  storageBucket: "green-canvas.firebasestorage.app",
+  messagingSenderId: "1043706925001",
+  appId: "1:1043706925001:web:b14beb42dc7ec894fe6218"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const auth = getAuth(app);
+const storage = getStorage(app);
+
+window.login = async function(){
+let email = document.getElementById('email').value;
+let pass = document.getElementById('pass').value;
+try{
+await signInWithEmailAndPassword(auth,email,pass);
+document.getElementById('loginBox').classList.add('hidden');
+document.getElementById('adminPanel').classList.remove('hidden');
+}catch(e){alert('Login Failed');}
+}
+
+window.addProduct = async function(){
+let name = document.getElementById('pName').value;
+let price = document.getElementById('pPrice').value;
+let file = document.getElementById('pImg').files[0];
+let cat = document.getElementById('pCat').value;
+
+if(!file){alert('Upload image');return;}
+
+const storageRef = ref(storage, 'products/'+Date.now()+file.name);
+await uploadBytes(storageRef, file);
+const url = await getDownloadURL(storageRef);
+
+await addDoc(collection(db,"products"),{name,price,img:url,cat});
+
+alert('✅ Product Added');
+}
+</script></body>
+</html>

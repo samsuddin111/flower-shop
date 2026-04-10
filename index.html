@@ -1,86 +1,346 @@
-<!DOCTYPE html><html lang="en">
+
+<!DOCTYPE html>
+<html lang="bn">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Green Canvas Online</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-<style>
-body {
-  margin: 0;
-  font-family: 'Poppins', sans-serif;
-  background: #0f172a;
-  color: white;
-}
-header {
-  background: linear-gradient(90deg, #22c55e, #16a34a);
-  padding: 15px;
-  text-align: center;
-  font-size: 24px;
-  font-weight: bold;
-}
-.hero {
-  text-align: center;
-  padding: 50px 20px;
-}
-.hero h1 {
-  font-size: 40px;
-}
-.products {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-  padding: 20px;
-}
-.card {
-  background: #1e293b;
-  padding: 15px;
-  border-radius: 15px;
-  text-align: center;
-}
-.card img {
-  width: 100%;
-  border-radius: 10px;
-}
-.btn {
-  background: #22c55e;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 10px;
-  color: white;
-  cursor: pointer;
-  margin-top: 10px;
-}
-footer {
-  background: #020617;
-  text-align: center;
-  padding: 20px;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>পুষ্পাঞ্জলি নার্সারি - শামীম আহমেদ</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Hind Siliguri', sans-serif; scroll-behavior: smooth; }
+        .active-cat { background-color: #16a34a !important; color: white !important; }
+        .glass-nav { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); }
+        .admin-hidden { display: none; }
+    </style>
 </head>
-<body><header>
-🌿 Green Canvas Online
-</header><section class="hero">
-<h1>Fresh Flowers Delivered</h1>
-<p>Order beautiful flowers directly on WhatsApp</p>
-</section><section class="products"><div class="card">
-<img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93" alt="flower">
-<h3>Rose Bouquet</h3>
-<p>₹199</p>
-<a href="https://wa.me/919353544837" target="_blank"><button class="btn">Order on WhatsApp</button></a>
-</div><div class="card">
-<img src="https://images.unsplash.com/photo-1490750967868-88aa4486c946" alt="flower">
-<h3>Sunflower</h3>
-<p>₹149</p>
-<a href="https://wa.me/919353544837" target="_blank"><button class="btn">Order on WhatsApp</button></a>
-</div><div class="card">
-<img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6" alt="flower">
-<h3>Mixed Flowers</h3>
-<p>₹249</p>
-<a href="https://wa.me/919353544837" target="_blank"><button class="btn">Order on WhatsApp</button></a>
-</div></section><footer>
-<p>Owner: Samim Ahmed SK</p>
-<p>Phone: 9353544837</p>
-<p>Address: Kuldia, Magrat, South 24 Parganas, WB - 743609</p>
-<p>Design & Developer: Samsuddin SK</p>
-</footer></body>
+<body class="bg-slate-50 text-slate-800">
+
+    <!-- Navigation -->
+    <nav class="glass-nav sticky top-0 z-50 border-b border-gray-100 shadow-sm">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div id="logo-trigger" class="flex items-center gap-2 cursor-pointer select-none active:scale-95 transition-transform">
+                <span class="text-3xl">🌿</span>
+                <h1 class="text-2xl font-bold text-green-700">পুষ্পাঞ্জলি</h1>
+            </div>
+            <div class="flex items-center gap-4">
+                <a href="#shop" class="text-sm font-bold text-gray-600">দোকান</a>
+                <button onclick="document.getElementById('profile-section').scrollIntoView({behavior:'smooth'})" 
+                        class="bg-green-600 text-white px-4 py-2 rounded-xl text-xs font-bold shadow-md">অর্ডার প্রোফাইল</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Wrapper -->
+    <div id="main-view">
+        <!-- Hero -->
+        <header class="relative h-[350px] flex items-center justify-center text-center text-white">
+            <img src="https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?auto=format&fit=crop&w=1600&q=80" 
+                 class="absolute inset-0 w-full h-full object-cover z-0" alt="Banner">
+            <div class="absolute inset-0 bg-black/50 z-10"></div>
+            <div class="relative z-20 px-4">
+                <h2 class="text-4xl font-extrabold mb-3 leading-tight">সতেজ চারা আসুক আপনার ঘরে</h2>
+                <p class="text-gray-200">সরাসরি নার্সারি থেকে সেরা মানের ফুল ও ফলের সংগ্রহ</p>
+            </div>
+        </header>
+
+        <!-- Profile / Delivery Info -->
+        <section id="profile-section" class="py-10">
+            <div class="container mx-auto px-4">
+                <div class="max-w-2xl mx-auto bg-white p-6 md:p-10 rounded-[2.5rem] shadow-xl border border-gray-50">
+                    <h3 class="text-xl font-bold mb-6 flex items-center gap-2">📝 ডেলিভারি তথ্য (Auto-Save)</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <input id="uName" type="text" placeholder="আপনার নাম" class="w-full p-4 bg-slate-50 rounded-2xl border-none ring-1 ring-gray-100 outline-none focus:ring-2 focus:ring-green-500">
+                        <input id="uPhone" type="tel" placeholder="মোবাইল নাম্বার" class="w-full p-4 bg-slate-50 rounded-2xl border-none ring-1 ring-gray-100 outline-none focus:ring-2 focus:ring-green-500">
+                    </div>
+                    <textarea id="uAddress" placeholder="পুরো ঠিকানা (গ্রাম/শহর, পোস্ট অফিস, পিন কোড)" rows="2" class="w-full p-4 bg-slate-50 rounded-2xl border-none ring-1 ring-gray-100 outline-none focus:ring-2 focus:ring-green-500 mb-4"></textarea>
+                    <button onclick="saveUserInfo()" class="w-full bg-slate-900 text-white py-4 rounded-2xl font-bold hover:bg-black transition shadow-lg">তথ্য সেভ করুন ✅</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Shop Section -->
+        <section id="shop" class="py-12 container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-10 gap-4">
+                <h2 class="text-2xl font-bold">আমাদের কালেকশন</h2>
+                <div class="flex bg-white p-1 rounded-2xl shadow-sm border overflow-x-auto max-w-full" id="filter-btns">
+                    <button onclick="filterPlants('all')" class="cat-btn active-cat px-6 py-2 rounded-xl text-sm font-bold">সব</button>
+                    <button onclick="filterPlants('flower')" class="cat-btn px-6 py-2 rounded-xl text-sm font-bold">ফুল</button>
+                    <button onclick="filterPlants('fruit')" class="cat-btn px-6 py-2 rounded-xl text-sm font-bold">ফল</button>
+                    <button onclick="filterPlants('indoor')" class="cat-btn px-6 py-2 rounded-xl text-sm font-bold">ইনডোর</button>
+                </div>
+            </div>
+
+            <!-- Product Grid -->
+            <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 min-h-[400px]">
+                <div class="col-span-full text-center py-20 text-gray-400">অপেক্ষা করুন...</div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Admin Panel (Hidden) -->
+    <div id="admin-view" class="admin-hidden container mx-auto px-4 py-12">
+        <div id="admin-login" class="max-w-md mx-auto bg-white p-10 rounded-[2.5rem] shadow-2xl text-center">
+            <h2 class="text-2xl font-bold mb-6">মালিক লগইন</h2>
+            <input id="adminPass" type="password" placeholder="পাসওয়ার্ড দিন" class="w-full p-4 border rounded-2xl mb-4 text-center">
+            <div class="flex gap-2">
+                <button onclick="closeAdmin()" class="flex-1 bg-gray-100 py-4 rounded-2xl">বাতিল</button>
+                <button onclick="checkAdminPass()" class="flex-[2] bg-green-600 text-white py-4 rounded-2xl font-bold">প্রবেশ</button>
+            </div>
+        </div>
+
+        <div id="admin-dashboard" class="hidden max-w-5xl mx-auto">
+            <div class="flex justify-between items-center mb-10">
+                <h2 class="text-3xl font-bold">অ্যাডমিন ড্যাশবোর্ড</h2>
+                <button onclick="closeAdmin()" class="bg-red-50 text-red-600 px-6 py-2 rounded-xl font-bold">লগআউট</button>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+                <!-- Add Form -->
+                <div class="bg-white p-8 rounded-[2rem] shadow-md border">
+                    <h3 class="font-bold mb-6 text-green-700">নতুন গাছ যোগ করুন</h3>
+                    <div class="space-y-4">
+                        <div id="upload-box" class="w-full h-40 bg-slate-50 border-2 border-dashed rounded-2xl flex items-center justify-center relative overflow-hidden">
+                            <span id="upload-status" class="text-xs font-bold text-gray-400">📷 ছবি আপলোড করুন</span>
+                            <img id="preview-img" class="hidden absolute inset-0 w-full h-full object-cover">
+                            <input type="file" id="img-input" accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer">
+                        </div>
+                        <input id="pName" type="text" placeholder="গাছের নাম" class="w-full p-3 border rounded-xl outline-none">
+                        <input id="pPrice" type="text" placeholder="দাম (যেমন: ৳ ২৫০)" class="w-full p-3 border rounded-xl outline-none">
+                        <select id="pCat" class="w-full p-3 border rounded-xl outline-none">
+                            <option value="flower">ফুল</option>
+                            <option value="fruit">ফল</option>
+                            <option value="indoor">ইনডোর</option>
+                        </select>
+                        <button id="add-btn" onclick="saveProduct()" class="w-full bg-green-600 text-white py-4 rounded-xl font-bold shadow-lg">অ্যাড করুন</button>
+                    </div>
+                </div>
+                <!-- List -->
+                <div class="lg:col-span-2 bg-white p-8 rounded-[2rem] shadow-md border h-fit">
+                    <h3 class="font-bold mb-6">প্রোডাক্ট লিস্ট</h3>
+                    <div id="admin-list" class="space-y-3 max-h-[500px] overflow-y-auto"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-gray-500 py-16 mt-20 text-center">
+        <h3 class="text-white text-xl font-bold mb-2">🌿 পুষ্পাঞ্জলি নার্সারি</h3>
+        <p class="text-sm mb-4">মালিক: শামীম আহমেদ এস কে | কুলদিয়া, মগরাহাট</p>
+        <p class="text-[10px] tracking-widest uppercase opacity-40">&copy; ২০২৪ | ডেভেলপ বাই শামীম</p>
+    </footer>
+
+    <!-- Firebase Scripts -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getFirestore, collection, addDoc, onSnapshot, deleteDoc, doc, query, orderBy } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+        import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
+        import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+        // --- গুরুত্বপূর্ণ: এখানে আপনার ফায়ারবেস কনফিগ বসান ---
+        const firebaseConfig = {
+            apiKey: "",
+            authDomain: "",
+            projectId: "",
+            storageBucket: "",
+            messagingSenderId: "",
+            appId: ""
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const storage = getStorage(app);
+        const auth = getAuth(app);
+        const colPath = "pushpanjali_nursery_v2"; // Unique path
+
+        let currentProducts = [];
+        let uploadedImgUrl = "";
+
+        // 1. Auth
+        signInAnonymously(auth);
+
+        // 2. Fetch Data
+        onSnapshot(collection(db, colPath), (snapshot) => {
+            currentProducts = snapshot.docs.map(d => ({ id: d.id, ...d.data() }));
+            renderProducts('all');
+            renderAdminList();
+        });
+
+        // 3. Render Functions
+        window.renderProducts = (filter) => {
+            const grid = document.getElementById('product-grid');
+            grid.innerHTML = '';
+            const filtered = filter === 'all' ? currentProducts : currentProducts.filter(p => p.category === filter);
+            
+            if(filtered.length === 0) {
+                grid.innerHTML = `<div class="col-span-full py-10 text-center text-gray-400">কোনো প্রোডাক্ট পাওয়া যায়নি।</div>`;
+                return;
+            }
+
+            filtered.forEach(p => {
+                grid.innerHTML += `
+                <div class="bg-white p-4 rounded-[2rem] shadow-sm border border-gray-50 hover:shadow-xl transition-all flex flex-col h-full group">
+                    <div class="rounded-[1.5rem] overflow-hidden aspect-[4/5] mb-4 bg-gray-100">
+                        <img src="${p.img}" class="w-full h-full object-cover group-hover:scale-105 transition-transform">
+                    </div>
+                    <div class="px-1 flex flex-col flex-grow">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-[10px] font-bold bg-green-50 text-green-600 px-3 py-1 rounded-full uppercase">${p.category}</span>
+                            <span class="text-yellow-400 text-xs">⭐⭐⭐⭐⭐</span>
+                        </div>
+                        <h3 class="font-bold text-gray-800 mb-4 h-12 line-clamp-2">${p.name}</h3>
+                        <div class="mt-auto">
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-xl font-bold text-green-700">${p.price}</span>
+                                <div class="flex items-center bg-slate-50 border rounded-lg">
+                                    <button onclick="changeQty('${p.id}', -1)" class="px-2 text-gray-400">-</button>
+                                    <span id="qty-${p.id}" class="px-2 font-bold text-xs">1</span>
+                                    <button onclick="changeQty('${p.id}', 1)" class="px-2 text-gray-400">+</button>
+                                </div>
+                            </div>
+                            <button onclick="orderViaWA('${p.id}')" class="w-full bg-green-600 text-white font-bold py-3.5 rounded-xl shadow-lg active:scale-95 transition-all">অর্ডার করুন</button>
+                        </div>
+                    </div>
+                </div>`;
+            });
+        };
+
+        window.renderAdminList = () => {
+            const list = document.getElementById('admin-list');
+            list.innerHTML = '';
+            currentProducts.forEach(p => {
+                list.innerHTML += `
+                <div class="flex items-center justify-between p-3 bg-slate-50 rounded-2xl border">
+                    <div class="flex items-center gap-3">
+                        <img src="${p.img}" class="w-12 h-12 rounded-lg object-cover">
+                        <div>
+                            <p class="font-bold text-sm">${p.name}</p>
+                            <p class="text-xs text-green-600 font-bold">${p.price}</p>
+                        </div>
+                    </div>
+                    <button onclick="deleteProd('${p.id}')" class="text-red-500 text-xs font-bold px-3 py-1 rounded-lg hover:bg-red-50 transition">ডিলিট</button>
+                </div>`;
+            });
+        };
+
+        // 4. Action Functions
+        window.saveProduct = async () => {
+            const name = document.getElementById('pName').value;
+            const price = document.getElementById('pPrice').value;
+            const category = document.getElementById('pCat').value;
+            
+            if(!name || !price || !uploadedImgUrl) return alert("সব তথ্য দিন!");
+            
+            document.getElementById('add-btn').innerText = "অপেক্ষা করুন...";
+            await addDoc(collection(db, colPath), { name, price, category, img: uploadedImgUrl, date: Date.now() });
+            
+            document.getElementById('pName').value = '';
+            document.getElementById('pPrice').value = '';
+            document.getElementById('preview-img').classList.add('hidden');
+            document.getElementById('upload-status').classList.remove('hidden');
+            uploadedImgUrl = "";
+            document.getElementById('add-btn').innerText = "অ্যাড করুন";
+            alert("সফলভাবে যোগ করা হয়েছে!");
+        };
+
+        window.deleteProd = async (id) => {
+            if(confirm("নিশ্চিত তো?")) await deleteDoc(doc(db, colPath, id));
+        };
+
+        // 5. Image Upload Logic
+        document.getElementById('img-input').onchange = async (e) => {
+            const file = e.target.files[0];
+            if(!file) return;
+            
+            document.getElementById('upload-status').innerText = "⏳ আপলোড হচ্ছে...";
+            try {
+                const sRef = ref(storage, `nursery/${Date.now()}_${file.name}`);
+                await uploadBytes(sRef, file);
+                uploadedImgUrl = await getDownloadURL(sRef);
+                
+                document.getElementById('preview-img').src = uploadedImgUrl;
+                document.getElementById('preview-img').classList.remove('hidden');
+                document.getElementById('upload-status').classList.add('hidden');
+            } catch (err) { alert("ছবি আপলোডে ব্যর্থ! Storage Check করুন।"); }
+        };
+
+        // 6. WA Order Logic
+        window.orderViaWA = (pId) => {
+            const p = currentProducts.find(item => item.id === pId);
+            const qty = document.getElementById(`qty-${pId}`).innerText;
+            const uName = localStorage.getItem('p-name');
+            const uPhone = localStorage.getItem('p-phone');
+            const uAddr = localStorage.getItem('p-address');
+
+            if(!uName || !uPhone || !uAddr) {
+                alert("আগে আপনার তথ্য সেভ করুন!");
+                document.getElementById('profile-section').scrollIntoView({behavior:'smooth'});
+                return;
+            }
+
+            const msg = `🌿 নতুন অর্ডার\n\n👤 কাস্টমার: ${uName}\n📞 ফোন: ${uPhone}\n📍 ঠিকানা: ${uAddr}\n\n📦 গাছ: ${p.name}\n🔢 পরিমাণ: ${qty} টি\n💰 দাম: ${p.price}`;
+            window.open(`https://wa.me/919353544837?text=${encodeURIComponent(msg)}`, '_blank');
+        };
+
+        // --- Helper Helpers ---
+        window.changeQty = (id, val) => {
+            const el = document.getElementById(`qty-${id}`);
+            let cur = parseInt(el.innerText);
+            cur += val;
+            if(cur < 1) cur = 1;
+            el.innerText = cur;
+        };
+
+        window.saveUserInfo = () => {
+            localStorage.setItem('p-name', document.getElementById('uName').value);
+            localStorage.setItem('p-phone', document.getElementById('uPhone').value);
+            localStorage.setItem('p-address', document.getElementById('uAddress').value);
+            alert("আপনার প্রোফাইল সেভ হয়েছে!");
+        };
+
+        window.filterPlants = (cat) => {
+            document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active-cat'));
+            event.target.classList.add('active-cat');
+            renderProducts(cat);
+        };
+
+        // Secret Admin Access
+        let clicks = 0;
+        document.getElementById('logo-trigger').onclick = () => {
+            clicks++;
+            if(clicks === 5) {
+                document.getElementById('main-view').classList.add('hidden');
+                document.getElementById('admin-view').classList.remove('admin-hidden');
+                clicks = 0;
+            }
+            setTimeout(() => clicks = 0, 3000);
+        };
+
+        window.closeAdmin = () => {
+            document.getElementById('main-view').classList.remove('hidden');
+            document.getElementById('admin-view').classList.add('admin-hidden');
+            document.getElementById('admin-dashboard').classList.add('hidden');
+            document.getElementById('admin-login').classList.remove('hidden');
+        };
+
+        window.checkAdminPass = () => {
+            if(document.getElementById('adminPass').value === '1234') {
+                document.getElementById('admin-login').classList.add('hidden');
+                document.getElementById('admin-dashboard').classList.remove('hidden');
+            } else alert("ভুল পাসওয়ার্ড!");
+        };
+
+        // Load Saved User
+        document.getElementById('uName').value = localStorage.getItem('p-name') || '';
+        document.getElementById('uPhone').value = localStorage.getItem('p-phone') || '';
+        document.getElementById('uAddress').value = localStorage.getItem('p-address') || '';
+
+    </script>
+</body>
 </html>
+
+```
+                                                                                                                                                         

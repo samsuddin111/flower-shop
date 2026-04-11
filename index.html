@@ -317,7 +317,7 @@ class="w-full bg-gradient-to-r from-green-600 to-emerald-500 hover:from-green-70
                     <img src="${p.img}" class="w-14 h-14 rounded-xl object-cover shadow-sm">
                     <div>
                         <p class="font-bold text-slate-800 text-sm leading-tight">${p.name}</p>
-                        <p class="text-[10px] text-green-600 font-bold italic">৳ ${p.price}</p>
+                        <p class="text-[10px] text-green-600 font-bold italic">₹ ${p.price}</p>
                     </div>
                 </div>
                 <button onclick="window.deleteItem('${p.id}')" class="text-red-500 font-bold text-xs uppercase hover:underline">Delete</button>
@@ -348,7 +348,7 @@ class="w-full bg-gradient-to-r from-green-600 to-emerald-500 hover:from-green-70
         if (!name || !phone || !address) { alert("❗ আগে আপনার তথ্য সংরক্ষণ করুন"); window.scrollToProfile(); return; }
         const product = plants.find(x => x.id === id);
         const qty = document.getElementById(`qty-${id}`).innerText, total = document.getElementById(`price-${id}`).innerText;
-        const msg = `🌿 *Green Canvas Online Order*\n\n👤 নাম: ${name}\n📞 নম্বর: ${phone}\n📍 ঠিকানা: ${address}\n\n🪴 পণ্য: ${product.name}\n🔢 পরিমাণ: ${qty} টি\n💰 মোট: ৳ ${total}\n\nঅর্ডারটি কনফার্ম করুন।`;
+        const msg = `🌿 *Green Canvas Online Order*\n\n👤 নাম: ${name}\n📞 নম্বর: ${phone}\n📍 ঠিকানা: ${address}\n\n🪴 পণ্য: ${product.name}\n🔢 পরিমাণ: ${qty} টি\n💰 মোট: ₹ ${total}\n\nঅর্ডারটি কনফার্ম করুন।`;
         window.open(`https://wa.me/917810881220?text=${encodeURIComponent(msg)}`, '_blank');
     };
 

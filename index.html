@@ -204,7 +204,7 @@
         const data = filter === 'all' ? plants : plants.filter(p => p.category === filter);
         
         if(data.length === 0) {
-            list.innerHTML = `<div class="col-span-full py-20 text-center text-slate-400 font-bold italic tracking-widest">কোনো পণ্য পাওয়া যায়নি...</div>`;
+            list.innerHTML = `<div class="col-span-full py-20 text-center text-slate-400 font-bold italic tracking-widest">🌱 আমাদের স্টোর আপডেট হচ্ছে...</div>`;
             return;
         }
 
@@ -212,7 +212,7 @@
             list.innerHTML += `
             <div class="bg-white p-4 rounded-[2rem] shadow-sm border border-slate-100 flex flex-col h-full plant-card overflow-hidden">
                 <div class="rounded-[1.5rem] overflow-hidden aspect-square mb-5 bg-slate-100 relative">
-                    <img src="${p.img}" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/400?text=Tree';">
+                    <img src="${p.img}" loading="lazy" class="w-full h-full object-cover" onerror="this.src='https://via.placeholder.com/400?text=Tree';">
                     <span class="absolute top-3 left-3 bg-white/90 backdrop-blur px-3 py-1 rounded-lg text-[10px] font-black text-green-800 uppercase shadow-sm">${p.category}</span>
                 </div>
                 <div class="flex-grow flex flex-col">

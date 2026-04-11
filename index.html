@@ -257,7 +257,7 @@ class="w-full bg-gradient-to-r from-green-600 to-emerald-500 hover:from-green-70
     window.saveToDB = async () => {
         const n = document.getElementById('p-name').value, p = document.getElementById('p-price').value, c = document.getElementById('p-cat').value, img = document.getElementById('p-img-url').value;
         if(!n || !p || !img) return alert("সব ঘর পূরণ করুন!");
-        const btn = document.getElementById('save-btn'); btn.innerHTML = "⏳..."; btn.disabled = true;
+        const btn = document.getElementById('save-btn'); btn.innerHTML = "⏳ সেভ হচ্ছে..."; btn.disabled = true;
         try { await addDoc(collection(db, colPath), { name: n, price: Number(p), category: c, img: img.trim(), time: serverTimestamp() }); alert("সফলভাবে সেভ হয়েছে!"); } catch (e) { alert("Error!"); }
         btn.innerHTML = "➕ স্টকে যোগ করুন"; btn.disabled = false;
         document.getElementById('p-name').value = ''; document.getElementById('p-price').value = ''; document.getElementById('p-img-url').value = '';
@@ -331,7 +331,7 @@ class="w-full bg-gradient-to-r from-green-600 to-emerald-500 hover:from-green-70
     };
 
     window.loginAdmin = () => {
-        if(document.getElementById('admin-password').value === 'green123') {
+        if(document.getElementById('admin-password').value === 'green@123') {
             document.getElementById('admin-login-box').classList.add('hidden-section');
             document.getElementById('admin-dashboard').classList.remove('hidden-section');
         } else { alert("ভুল পাসওয়ার্ড!"); }

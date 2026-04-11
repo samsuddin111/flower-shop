@@ -460,9 +460,10 @@ text-transparent bg-clip-text drop-shadow-sm">
                                     <button onclick="window.updateQty('${p.id}', 1, ${p.price})" class="w-12 h-12 flex items-center justify-center text-slate-300 hover:text-green-600 transition-all font-black text-2xl active:scale-75">+</button>
                                 </div>
                             </div>
-                            <button onclick="window.handleOrder('${p.id}')" class="w-full bg-green-600 hover:bg-green-700 text-white font-black py-6 rounded-[2.2rem] shadow-2xl shadow-green-100 active:scale-95 transition-all flex items-center justify-center gap-4 text-sm uppercase tracking-[0.2em] border-b-4 border-green-800">
-                                🛒 Add To Basket
-                            </button>
+                            <button onclick="window.handleOrder('${p.id}')" 
+class="w-full bg-gradient-to-r from-green-600 to-emerald-500 hover:from-green-700 hover:to-emerald-600 text-white font-black py-6 rounded-[2.2rem] shadow-2xl active:scale-95 transition-all flex items-center justify-center gap-3 text-sm uppercase tracking-[0.2em]">
+  🛒 অর্ডার করুন
+</button>
                         </div>
                     </div>
                 </div>`;
@@ -490,9 +491,9 @@ text-transparent bg-clip-text drop-shadow-sm">
         window.saveToDB = async () => {
             const n = document.getElementById('p-name').value, p = document.getElementById('p-price').value, c = document.getElementById('p-cat').value, img = document.getElementById('p-img-url').value;
             if(!n || !p || !img) return alert("Puru form fill-up korun!");
-            const btn = document.getElementById('save-btn'); btn.innerText = "Saving Data..."; btn.disabled = true;
+            const btn = document.getElementById('save-btn'); btn.innerHTML = "⏳ সেভ হচ্ছে..."; btn.disabled = true;
             try { await addDoc(collection(db, colPath), { name: n, price: Number(p), category: c, img: img.trim(), time: serverTimestamp() }); alert("Gach-er chora update hoyeche!"); } catch (e) { alert("Error!"); }
-            btn.innerText = "Update Stock"; btn.disabled = false;
+            btn.innerHTML = "✅ স্টকে যোগ করুন"; btn.disabled = false;
             document.getElementById('p-name').value = ''; document.getElementById('p-price').value = ''; document.getElementById('p-img-url').value = '';
         };
 
@@ -506,12 +507,34 @@ text-transparent bg-clip-text drop-shadow-sm">
         };
 
         window.handleOrder = (id) => {
-            const uName = localStorage.getItem('p-name');
-            if(!uName) { alert("Apnar name o thikana save na korle order kora sombhob noi."); window.scrollToProfile(); return; }
-            const p = plants.find(x => x.id === id), qty = document.getElementById(`qty-${id}`).innerText, total = document.getElementById(`price-${id}`).innerText, uPhone = localStorage.getItem('p-phone'), uAddr = localStorage.getItem('p-address');
-            const msg = `🌿 *New Order (Green Canvas Online)*\n\n👤 *Name:* ${uName}\n📞 *Phone:* ${uPhone}\n📍 *Address:* ${uAddr}\n\n📦 *Plant:* ${p.name}\n🔢 *Quantity:* ${qty} pc\n💰 *Total Price:* ৳ ${total}\n\n_Doya kore order confirm korun._`;
-            window.open(`https://wa.me/919353544837?text=${encodeURIComponent(msg)}`, '_blank');
-        };
+    const name = localStorage.getItem('p-name');
+    const phone = localStorage.getItem('p-phone');
+    const address = localStorage.getItem('p-address');
+
+    if (!name || !phone || !address) {
+        alert("❗ আগে আপনার তথ্য সংরক্ষণ করুন");
+        window.scrollToProfile();
+        return;
+    }
+
+    const product = plants.find(x => x.id === id);
+    const qty = document.getElementById(`qty-${id}`).innerText;
+    const total = document.getElementById(`price-${id}`).innerText;
+
+    const msg = `🌿 *Green Canvas Online Order*
+
+👤 নাম: ${name}
+📞 নম্বর: ${phone}
+📍 ঠিকানা: ${address}
+
+🪴 পণ্য: ${product.name}
+🔢 পরিমাণ: ${qty} টি
+💰 মোট মূল্য: ৳ ${total}
+
+✅ অনুগ্রহ করে অর্ডারটি নিশ্চিত করুন।`;
+
+    window.open(`https://wa.me/919353544837?text=${encodeURIComponent(msg)}`, '_blank');
+};
 
         window.saveUserProfile = () => {
             const n = document.getElementById('uName').value, p = document.getElementById('uPhone').value, a = document.getElementById('uAddress').value;
@@ -569,7 +592,7 @@ text-transparent bg-clip-text drop-shadow-sm">
 
         window.loginAdmin = () => {
             const pass = document.getElementById('admin-password').value;
-            if(pass === '1234') {
+            if(pass === 'green123') {
                 document.getElementById('admin-login-box').classList.add('hidden-section');
                 document.getElementById('admin-dashboard').classList.remove('hidden-section');
             } else {

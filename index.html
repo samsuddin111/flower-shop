@@ -144,16 +144,39 @@
                 <h3 class="text-white text-3xl font-black mb-6 italic">🌿 Green Canvas</h3>
                 <p class="leading-relaxed mb-8 text-sm opacity-80 italic">"আপনার স্বপ্নের ঘরকে সাজাতে আমরা সদা সচেষ্ট। প্রতিটি চারা আমাদের কাছে সন্তানের মতো সজীব।"</p>
                 <div class="flex gap-4">
-                    <a href="https://wa.me/919353544837" class="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center hover:bg-green-600 text-xl transition">📲</a>
+                    <a href="https://wa.me/917810881220" class="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center hover:bg-green-600 text-xl transition">📲</a>
                 </div>
             </div>
             <div>
-                <h4 class="text-white font-bold mb-6 text-lg uppercase tracking-widest">📞 যোগাযোগ</h4>
-                <ul class="space-y-4 text-sm">
-                    <li class="flex items-start gap-3"><span>📍</span> <span>কুলদিয়া, মাগরাহাট, দক্ষিণ ২৪ পরগনা - 743609</span></li>
-                    <li class="flex items-center gap-3"><span>👤</span> <span class="uppercase font-bold">Samim Ahmed SK</span></li>
-                    <li class="flex items-center gap-3 text-green-500 font-bold"><span>📞</span> <span class="text-lg">+91 9353544837</span></li>
-                </ul>
+    <h4 class="text-white font-bold mb-6 text-lg uppercase tracking-widest">📞 যোগাযোগ</h4>
+    
+    <ul class="space-y-4 text-sm">
+
+        <li class="flex items-start gap-3">
+            <span>📍</span> 
+            <span>কুলদিয়া, মাগরাহাট, দক্ষিণ ২৪ পরগনা - 743609</span>
+        </li>
+
+        <li class="flex items-center gap-3">
+            <span>👤</span> 
+            <span class="uppercase font-bold">Samim Ahmed SK</span>
+        </li>
+
+        <li class="flex items-center gap-3 text-green-500 font-bold">
+            <span>📞</span> 
+            <a href="tel:+917810881220" class="text-lg hover:underline">
+                +91 7810881220
+            </a>
+        </li>
+
+        <li class="flex items-center gap-3 text-blue-400 font-semibold">
+            <span>📧</span> 
+            <a href="mailto:samim.g.c.o@gmail.com" class="hover:underline break-all">
+                samim.g.c.o@gmail.com
+            </a>
+        </li>
+
+    </ul>
             </div>
             <div class="mt-16 text-center border-t border-white/10 pt-10">
 
@@ -309,7 +332,7 @@ class="w-full bg-gradient-to-r from-green-600 to-emerald-500 hover:from-green-70
         const product = plants.find(x => x.id === id);
         const qty = document.getElementById(`qty-${id}`).innerText, total = document.getElementById(`price-${id}`).innerText;
         const msg = `🌿 *Green Canvas Order*\n\n👤 নাম: ${name}\n📞 নম্বর: ${phone}\n📍 ঠিকানা: ${address}\n\n🪴 পণ্য: ${product.name}\n🔢 পরিমাণ: ${qty} টি\n💰 মোট: ৳ ${total}\n\nঅর্ডারটি কনফার্ম করুন।`;
-        window.open(`https://wa.me/919353544837?text=${encodeURIComponent(msg)}`, '_blank');
+        window.open(`https://wa.me/917810881220?text=${encodeURIComponent(msg)}`, '_blank');
     };
 
     window.saveUserProfile = () => {

@@ -85,10 +85,27 @@
                 <p class="text-green-600 font-bold text-sm italic">প্রিমিয়াম মানের গাছের চারা</p>
             </div>
             <div class="flex bg-white p-1 rounded-2xl shadow-sm border border-slate-200 overflow-x-auto max-w-full no-scrollbar">
-                <button onclick="window.filterItems('all')" class="filter-btn active-filter px-6 py-2.5 rounded-xl text-xs font-bold uppercase transition-all whitespace-nowrap">সব</button>
-                <button onclick="window.filterItems('flower')" class="filter-btn px-6 py-2.5 rounded-xl text-xs font-bold uppercase transition-all whitespace-nowrap">ফুল</button>
-                <button onclick="window.filterItems('fruit')" class="filter-btn px-6 py-2.5 rounded-xl text-xs font-bold uppercase transition-all whitespace-nowrap">ফল</button>
-                <button onclick="window.filterItems('indoor')" class="filter-btn px-6 py-2.5 rounded-xl text-xs font-bold uppercase transition-all whitespace-nowrap">ইনডোর</button>
+
+    <button onclick="window.filterItems('all', this)" 
+    class="filter-btn active-filter px-6 py-2.5 rounded-xl text-xs font-bold uppercase transition-all whitespace-nowrap">
+        সব
+    </button>
+
+    <button onclick="window.filterItems('flower', this)" 
+    class="filter-btn px-6 py-2.5 rounded-xl text-xs font-bold uppercase transition-all whitespace-nowrap">
+        ফুল
+    </button>
+
+    <button onclick="window.filterItems('fruit', this)" 
+    class="filter-btn px-6 py-2.5 rounded-xl text-xs font-bold uppercase transition-all whitespace-nowrap">
+        ফল
+    </button>
+
+    <button onclick="window.filterItems('indoor', this)" 
+    class="filter-btn px-6 py-2.5 rounded-xl text-xs font-bold uppercase transition-all whitespace-nowrap">
+        ইনডোর
+    </button>
+
             </div>
         </div>
 

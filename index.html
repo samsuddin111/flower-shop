@@ -408,9 +408,9 @@ class="w-full bg-gradient-to-r from-green-600 to-emerald-500 hover:from-green-70
         } else { alert("ভুল পাসওয়ার্ড!"); }
     };
 
-    window.filterItems = (cat, el) => {
+    window.filterItems = (cat, btn) => {
     document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active-filter'));
-    el.classList.add('active-filter');
+    btn.classList.add('active-filter');
     window.renderShopUI(cat);
 };
     window.addEventListener('load', window.loadProfileUI);
